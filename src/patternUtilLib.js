@@ -15,3 +15,4 @@ const lineGenerator = function(leftChar,middleChar,rightChar,width){
 
 
 exports.lineGenerator = lineGenerator;
+exports.repeatChar = repeatChar;

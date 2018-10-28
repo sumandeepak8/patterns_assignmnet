@@ -1,5 +1,6 @@
 const utilLib = require('./patternUtilLib');
 const {lineGenerator} = utilLib;
+const {repeatChar} = utilLib;
 
 const makeFilledRectangle = function(width,height){
   let delimiter = "\n";
@@ -12,7 +13,7 @@ const makeFilledRectangle = function(width,height){
   }
   if(height >1)
   rectangle.push(lineGenerator("*","*","*",width));
-  return rectangle.join("\n");
+  return rectangle.join(delimiter);
 }
 
 const makeHollowRectangle = function(width,height){
@@ -26,7 +27,7 @@ const makeHollowRectangle = function(width,height){
   }
   if(height >1)
     rectangle.push(lineGenerator("*","*","*",width));
-  return rectangle.join("\n");
+  return rectangle.join(delimiter);
 
 }
 
@@ -48,54 +49,56 @@ const genRectangle = function(type,width,height){
   return rectangle[type];
 }
 
+
 // to make left sided triangle.
 const left = function(height){
-  let stars = "";
-  let triangle ="";
-  for(let rowIndex =1; rowIndex <= height; rowIndex++){
-    for(let column =1; column <= rowIndex; column++){
-      stars += "*";
-    }
-    triangle += stars;
-    if(rowIndex!=height){
-      triangle +="\n";
-    }
-    stars ="";
+  let delimiter = "\n";
+  let triangle =[];
+  let spaces = height;
+  for(let index=1; index<=height ; index++){
+    triangle.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
   }
-  return triangle;
+  return triangle.join(delimiter);
+
+}
+
+const genLeftTriangle = function(height){
+  let delimiter = "\n";
+  let triangle =[];
+  let spaces = height;
+  for(let index=1; index<=height ; index++){
+    triangle.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
+  }
+  return triangle.join(delimiter);
+}
+
+const genRightTriangle = function(height){
+  let delimiter = "\n";
+  let triangle =[];
+  let spaces = height;
+  for(let index=1; index<=height ; index++){
+    triangle.push(repeatChar("*",index).concat(repeatChar(" ",spaces-index)));
+  }
+  return triangle.join(delimiter);
 }
 
 
 const right = function(height){
-  let stars = "";
-  let triangle ="";
-  let delimiter =" ";
-  let numOfStars = height-1;
-  for(let rowIndex =1; rowIndex <= height; rowIndex++){
-    for(let column =1; column <=height; column++){
-      if(column > numOfStars){
-        stars +="*";
-      }
-      else{
-        stars += delimiter;
-      }
-    }
-    triangle += stars;
-    if(rowIndex!=height){
-      triangle +="\n";
-    }
-    stars ="";
-    numOfStars --;
+  let delimiter = "\n";
+  let triangle =[];
+  let spaces = height;
+  for(let index=1; index<=height ; index++){
+    triangle.push(repeatChar("*",index).concat(repeatChar(" ",spaces-index)));
   }
-  return triangle;
+  return triangle.join(delimiter);
 }
 
 const genTriangle = function(alignType,height){
   if(alignType == "left"){
-    return left(height);
+    return right(height);
   }
   if(alignType == "right"){
-    return right(height);
+    return left(height);
   }
 }
 
@@ -147,10 +150,10 @@ const genFilledDiamond = function(height){
     lines += genLineOfFilledDiamond(height,rowIndex) + delimiter;
     lowerLine = genLineOfFilledDiamond(height,rowIndex) + delimiter + lowerLine;
     if(rowIndex == 1){
-    lowerLine = genLineOfFilledDiamond(height,rowIndex);
+      lowerLine = genLineOfFilledDiamond(height,rowIndex);
     }
   }
-  
+
   return (lines + lowerLines);
 }
 
@@ -158,7 +161,7 @@ const genLineOfFilledDiamond = function(height,rowIndex,lowerLines){
   let startPosition = Math.ceil(height/2)-(rowIndex-1);
   let endPosition = Math.ceil(height/2)+(rowIndex-1);
   let line = "";
-  
+
   for(let columnIndex = 1; columnIndex <= height; columnIndex++){
     let stars = " ";
     if(columnIndex >=startPosition && columnIndex <= endPosition){
@@ -166,7 +169,7 @@ const genLineOfFilledDiamond = function(height,rowIndex,lowerLines){
     }
     line +=stars;
   }
-  
+
   return line;
 }
 
@@ -176,12 +179,12 @@ const genAngledHollowDiamond = function(height){
   let lowerLines = "";
   let delimiter = "\n";
   let lowerLine = "";
- let rowIndex = 1; 
+  let rowIndex = 1; 
   for(rowIndex = 1; rowIndex <= limit; rowIndex++){
     if(rowIndex != limit) lines += genLineOfAngledHollowDiamond(height,rowIndex,limit) + delimiter;
     else lines += genLineOfAngledHollowDiamond(height,rowIndex,limit);
   }
-    lowerLine =  lowerAngled(height,limit); 
+  lowerLine =  lowerAngled(height,limit); 
   return (lines+"\n"+lowerLine);
 }
 
@@ -189,7 +192,7 @@ const genLineOfAngledHollowDiamond = function(height,rowIndex,limit){
   let startPosition = Math.ceil(height/2)-(rowIndex-1);
   let endPosition = Math.ceil(height/2)+(rowIndex-1);
   let line = "";
-  
+
   for(let columnIndex = 1; columnIndex <= height; columnIndex++){
     let stars = " ";
     if((rowIndex == 1 && columnIndex == startPosition) || (rowIndex == limit && (columnIndex == startPosition ||columnIndex  == height))){
@@ -222,11 +225,11 @@ const lowerAngled = function(height,limit){
       if( rowIndex == height && columnIndex == startPosition){
         stars ="*";
       }
-    line += stars ;
+      line += stars ;
     }
-  if(rowIndex != height){
-    line  +=  "\n";
-  }
+    if(rowIndex != height){
+      line  +=  "\n";
+    }
     startPosition++;
     endPosition--;
   }
