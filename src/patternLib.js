@@ -30,42 +30,23 @@ const makeHollowRectangle = function(width,height){
 
 }
 
-
 const makeAlternatingRectangle = function(width,height){
-  let stars ="";
-  let delimiter ="-";
-  let rectangle ="";
-  let modulous =0;
-  for(let rowIndex = 1; rowIndex <= height; rowIndex++){
-    modulous = rowIndex%2;
-    for(let columnIndex = 1; columnIndex <= width; columnIndex++){ 
-      if(modulous){
-        stars +="*";
-      }else{
-        stars += delimiter;
-      }
-    }
-    rectangle += stars;
-    if(rowIndex!=height){
-      rectangle +="\n";
-    }
-    stars ="";
+  let rectangle = [];
+  let lineGeneratorRef = [lineGenerator("*","*","*",width),lineGenerator("-","-","-",width)]
+  for(let index = 0; index < height; index++){
+    rectangle.push(lineGeneratorRef[index%2]);
   }
-  return rectangle;
+  return rectangle.join("\n");
 }
+
 
 const genRectangle = function(type,width,height){
-  if(type == "filled"){
-    return makeFilledRectangle(width,height);
-  }
-  if(type == "hollow"){
-    return makeHollowRectangle(width,height);
-  }
-  if(type == "alternating"){
-    return makeAlternatingRectangle(width,height);
-  }
+  let rectangle = {};
+  rectangle.filled = makeFilledRectangle(width,height);
+  rectangle.hollow = makeHollowRectangle(width,height);
+  rectangle.alternating = makeAlternatingRectangle(width,height);
+  return rectangle[type];
 }
-
 
 // to make left sided triangle.
 const left = function(height){
