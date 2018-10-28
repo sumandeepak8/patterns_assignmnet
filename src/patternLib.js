@@ -1,17 +1,20 @@
+const utilLib = require('./patternUtilLib');
+
+const {lineGenerator} = utilLib;
+
+
 const makeFilledRectangle = function(width,height){
-  let stars ="";
-  let rectangle ="";
-  for(let rowIndex=1; rowIndex <= height; rowIndex++){
-    for(let columnIndex=1; columnIndex <= width;columnIndex++){
-      stars +="*";
-    }
-    rectangle += stars;
-    if(rowIndex!=height){
-      rectangle += "\n";
-    }
-    stars ="";
+  let delimiter = "\n";
+  let rectangle = [];
+  if(height < 1)
+    return "";
+  rectangle.push(lineGenerator("*","*","*",width));
+  for(let index = 0; index < height-2; index++){
+  rectangle.push(lineGenerator("*","*","*",width));
   }
-  return rectangle;
+  if(height >1)
+  rectangle.push(lineGenerator("*","*","*",width));
+  return rectangle.join("\n");
 }
 
 const makeEmptyRectangle = function(width,height){
@@ -273,5 +276,6 @@ const genDiamond = function(type,height){
 
 
 exports.genRectangle = genRectangle;
+exports.makeFilledRectangle = makeFilledRectangle;
 exports.genTriangle = genTriangle;
 exports.genDiamond = genDiamond;

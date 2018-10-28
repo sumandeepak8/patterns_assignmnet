@@ -1,0 +1,19 @@
+const assert = require('assert');
+const lib = require('../src/patternLib.js');
+
+const {makeFilledRectangle} = lib;
+
+// test for filled rectangle;
+let row = "*";
+let expectedOutput = row;
+assert.deepEqual(makeFilledRectangle(1,1),expectedOutput);
+
+row = "**";
+expectedOutput = row;
+assert.deepEqual(makeFilledRectangle(2,1),expectedOutput);
+
+row = "*";
+expectedOutput = [row,row].join("\n");
+assert.deepEqual(makeFilledRectangle(1,2),expectedOutput);
+
+
