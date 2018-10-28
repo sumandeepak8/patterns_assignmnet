@@ -10,6 +10,8 @@ const {genTriangle} = lib;
 let row = "*";
 let expectedOutput = row;
 assert.deepEqual(makeFilledRectangle(1,1),expectedOutput);
+assert.deepEqual(makeFilledRectangle(1,0),"");
+assert.deepEqual(makeFilledRectangle(0,1),"*");
 
 row = "**";
 expectedOutput = row;

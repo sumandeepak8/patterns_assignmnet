@@ -3,8 +3,6 @@ const {lineGenerator} = utilLib;
 const {repeatChar} = utilLib;
 
 const makeFilledRectangle = function(width,height){
-  if(height < 1)
-    return "";
   return Array(height).fill(lineGenerator("*","*","*",width)).join("\n");
 }
 
@@ -49,26 +47,6 @@ const left = function(height){
   }
   return triangle.join(delimiter);
 
-}
-
-const genLeftTriangle = function(height){
-  let delimiter = "\n";
-  let triangle =[];
-  let spaces = height;
-  for(let index=1; index<=height ; index++){
-    triangle.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
-  }
-  return triangle.join(delimiter);
-}
-
-const genRightTriangle = function(height){
-  let delimiter = "\n";
-  let triangle =[];
-  let spaces = height;
-  for(let index=1; index<=height ; index++){
-    triangle.push(repeatChar("*",index).concat(repeatChar(" ",spaces-index)));
-  }
-  return triangle.join(delimiter);
 }
 
 const right = function(height){
