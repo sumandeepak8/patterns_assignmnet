@@ -1,7 +1,5 @@
 const utilLib = require('./patternUtilLib');
-
 const {lineGenerator} = utilLib;
-
 
 const makeFilledRectangle = function(width,height){
   let delimiter = "\n";
@@ -17,27 +15,19 @@ const makeFilledRectangle = function(width,height){
   return rectangle.join("\n");
 }
 
-const makeEmptyRectangle = function(width,height){
-  let stars ="";
-  let rectangle ="";
-  let delimiter =" ";
-  for(let rowIndex = 1; rowIndex <= height; rowIndex++){
-    for(let columnIndex =1; columnIndex <= width; columnIndex++){
-      if(rowIndex == 1 || rowIndex == height){
-        stars +="*";
-      }else if(columnIndex==1 || columnIndex == width){
-        stars +="*";
-      }else{
-        stars +=delimiter;
-      }
-    }
-    rectangle += stars;
-    if(rowIndex!=height){
-      rectangle +="\n";
-    }
-    stars ="";
+const makeHollowRectangle = function(width,height){
+  let delimiter = "\n";
+  let rectangle = [];
+  if(height < 1)
+    return "";
+  rectangle.push(lineGenerator("*","*","*",width));
+  for(let index = 0; index < height-2; index++){
+    rectangle.push(lineGenerator("*"," ","*",width));
   }
-  return rectangle;
+  if(height >1)
+    rectangle.push(lineGenerator("*","*","*",width));
+  return rectangle.join("\n");
+
 }
 
 
@@ -68,8 +58,8 @@ const genRectangle = function(type,width,height){
   if(type == "filled"){
     return makeFilledRectangle(width,height);
   }
-  if(type == "empty"){
-    return makeEmptyRectangle(width,height);
+  if(type == "hollow"){
+    return makeHollowRectangle(width,height);
   }
   if(type == "alternating"){
     return makeAlternatingRectangle(width,height);
@@ -277,5 +267,6 @@ const genDiamond = function(type,height){
 
 exports.genRectangle = genRectangle;
 exports.makeFilledRectangle = makeFilledRectangle;
+exports.makeHollowRectangle = makeHollowRectangle;
 exports.genTriangle = genTriangle;
 exports.genDiamond = genDiamond;
