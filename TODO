@@ -1,6 +1,0 @@
-first refactor the rectangle program.
-then triangle and then diamond.
-after refactoring ,put the small function in patternUtilLib file.
-
-
-Rectagle pattern has bug related to 0 and 1 input ,after refactoring i will resolve it.
