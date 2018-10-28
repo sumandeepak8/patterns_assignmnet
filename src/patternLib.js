@@ -3,32 +3,21 @@ const {lineGenerator} = utilLib;
 const {repeatChar} = utilLib;
 
 const makeFilledRectangle = function(width,height){
-  let delimiter = "\n";
-  let rectangle = [];
   if(height < 1)
     return "";
-  rectangle.push(lineGenerator("*","*","*",width));
-  for(let index = 0; index < height-2; index++){
-  rectangle.push(lineGenerator("*","*","*",width));
-  }
-  if(height >1)
-  rectangle.push(lineGenerator("*","*","*",width));
-  return rectangle.join(delimiter);
+  return Array(height).fill(lineGenerator("*","*","*",width)).join("\n");
 }
 
 const makeHollowRectangle = function(width,height){
-  let delimiter = "\n";
-  let rectangle = [];
+  let rectangle = []; 
   if(height < 1)
     return "";
-  rectangle.push(lineGenerator("*","*","*",width));
-  for(let index = 0; index < height-2; index++){
-    rectangle.push(lineGenerator("*"," ","*",width));
-  }
-  if(height >1)
+  if(height >1){
+    rectangle = new Array(height-2).fill(lineGenerator("*"," ","*",width));
     rectangle.push(lineGenerator("*","*","*",width));
-  return rectangle.join(delimiter);
-
+  }
+  rectangle.unshift(lineGenerator("*","*","*",width));
+  return rectangle.join("\n");
 }
 
 const makeAlternatingRectangle = function(width,height){
@@ -81,7 +70,6 @@ const genRightTriangle = function(height){
   }
   return triangle.join(delimiter);
 }
-
 
 const right = function(height){
   let delimiter = "\n";
