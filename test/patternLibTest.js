@@ -44,12 +44,12 @@ assert.deepEqual(genRectangle("alternating",1,1),expectedOutput);
 expectedOutput = ["*"].join("\n");
 assert.deepEqual(genTriangle("left",1),expectedOutput);
 
-expectedOutput = ["*  ","** ","***"].join("\n");
+expectedOutput = ["  *"," **","***"].join("\n");
 assert.deepEqual(genTriangle("left",3),expectedOutput);
 
 // test for right triangle.
 expectedOutput = ["*"].join("\n");
 assert.deepEqual(genTriangle("right",1),expectedOutput);
 
-expectedOutput = ["  *"," **","***"].join("\n");
+expectedOutput = ["*  ","** ","***"].join("\n");
 assert.deepEqual(genTriangle("right",3),expectedOutput);

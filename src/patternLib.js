@@ -60,12 +60,10 @@ const right = function(height){
 }
 
 const genTriangle = function(alignType,height){
-  if(alignType == "left"){
-    return right(height);
-  }
-  if(alignType == "right"){
-    return left(height);
-  }
+  let triangle = {};
+  triangle.left = left(height);
+  triangle.right = right(height);
+  return triangle[alignType];
 }
 
 const genHollowDiamond = function(height){
