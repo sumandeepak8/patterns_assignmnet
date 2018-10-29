@@ -1,171 +1,0 @@
-Script started on Sun Oct 28 16:16:19 2018
-[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns]1;..file/patterns[0m[27m[24m[J[01;32m➜  [36mpatterns[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004hscript[1C/[?1l>[?2004l
-]2;script/]1;script/[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/script]1;..tterns/script[0m[27m[24m[J[01;32m➜  [36mscript[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004hlls[?1l>[?2004l
-]2;ls -G]1;ls[31mrun_all_test.sh[39;49m[0m [31mrun_test.sh[39;49m[0m
-[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/script]1;..tterns/script[0m[27m[24m[J[01;32m➜  [36mscript[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004h../run_all_test.sh[1m [0m[0m [?1l>[?2004l
-]2;./run_all_test.sh]1;./run_all_test.sh-------------------------------
-Running test with input filled|2|2
-**
-**
--------------------------------
-Running test with input filled|3|3
-***
-***
-***
--------------------------------
-Running test with input filled|4|4
-****
-****
-****
-****
--------------------------------
-Running test with input filled|6|4
-******
-******
-******
-******
--------------------------------
-Running test with input empty|3|3
-***
-* *
-***
--------------------------------
-Running test with input empty|4|6
-****
-*  *
-*  *
-*  *
-*  *
-****
--------------------------------
-Running test with input alternating|4|4
-****
-----
-****
-----
--------------------------------
-Running test with input alternating|6|4
-******
-------
-******
-------
--------------------------------
-Running test with input alternating|3|5
-***
----
-***
----
-***
--------------------------------
-Tests passed!
--------------------------------
-Running test with input left|4
-*
-**
-***
-****
--------------------------------
-Running test with input right|5
-    *
-   **
-  ***
- ****
-*****
--------------------------------
-Running test with input left|3
-*
-**
-***
--------------------------------
-Running test with input right|7
-      *
-     **
-    ***
-   ****
-  *****
- ******
-*******
--------------------------------
-Tests passed!
--------------------------------
-Running test with input filled|3
- * 
-***
- * 
--------------------------------
-Running test with input filled|5
-  *  
- *** 
-*****
- *** 
-  *  
--------------------------------
-Running test with input filled|7
-   *   
-  ***  
- ***** 
-*******
- ***** 
-  ***  
-   *   
--------------------------------
-Running test with input hollow|3
- * 
-* *
- * 
--------------------------------
-Running test with input hollow|5
-  *  
- * * 
-*   *
- * * 
-  *  
--------------------------------
-Running test with input hollow|7
-   *   
-  * *  
- *   * 
-*     *
- *   * 
-  * *  
-   *   
--------------------------------
-Running test with input angled|3
- * 
-* *
- * 
--------------------------------
-Running test with input angled|5
-  *  
- / \ 
-*   *
- \ / 
-  *  
--------------------------------
-Running test with input angled|7
-   *   
-  / \  
- /   \ 
-*     *
- \   / 
-  \ /  
-   *   
--------------------------------
-Tests passed!
-[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/script]1;..tterns/script[0m[27m[24m[J[01;32m➜  [36mscript[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004h[[..[?1l>[?2004l
-]2;[..]1;[..zsh: bad pattern: [..
-[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/script]1;..tterns/script[0m[27m[24m[J[01;31m➜  [36mscript[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004h...[?1l>[?2004l
-]2;..]1;..[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns]1;..file/patterns[0m[27m[24m[J[01;32m➜  [36mpatterns[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004hvv  ssrc[1m/[0m[0m [?1l>[?2004l
-]2;src]1;src[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/src]1;../patterns/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004hllal ls[?1l>[?2004l
-]2;ls -G]1;lspatternLib.js
-[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/src]1;../patterns/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004hvv patternUtilLib.js[?1l>[?2004l
-]2;vim patternUtilLib.js]1;v[?2004h[?1049h[?1h=[?2004h[1;32r[?12h[?12l[22;2t[22;1t[27m[29m[m[H[2J[?25l[32;1H"patternUtilLib.js" [New File][2;1H▽[6n[2;1H  [1;1H[>c]10;?]11;?[1;1H[93m  1 [m
-[94m~                                                                                                                      [3;1H~                                                                                                                      [4;1H~                                                                                                                      [5;1H~                                                                                                                      [6;1H~                                                                                                                      [7;1H~                                                                                                                      [8;1H~                                                                                                                      [9;1H~                                                                                                                      [10;1H~                                                                                                                      [11;1H~                                                                                                                      [12;1H~                                                                                                                      [13;1H~                                                                                                                      [14;1H~                                                                                                                      [15;1H~                                                                                                                      [16;1H~                                                                                                                      [17;1H~                                                                                                                      [18;1H~                                                                                                                      [19;1H~                                                                                                                      [20;1H~                                                                                                                      [21;1H~                                                                                                                      [22;1H~                                                                                                                      [23;1H~                                                                                                                      [24;1H~                                                                                                                      [25;1H~                                                                                                                      [26;1H~                                                                                                                      [27;1H~                                                                                                                      [28;1H~                                                                                                                      [29;1H~                                                                                                                      [30;1H~                                                                                                                      [m[31;1H[1m[7m~/project/javascript_program_file/patterns/src/patternUtilLib.js                                                       [1;5H[?25h[?12$p[?25l[m[32;1H[1m-- INSERT --[m[32;13H[K[1;5H[93mconst[m repeatChar = [1m[96mfunction[m([93mchar[m,times)[1m[96m{[m
-[93m  2 [m  [1m[96mlet[m[2;10H[K[2;10H[?25h[?25l line = [95m""[m;
-[93m  3 [m  [93mfor[m([1m[96mlet[m index = 0; index < times; index++)[3;49H[K[3;49H[?25h[?25l[1m[96m{[m
-[93m  4 [m    line += [93mchar[m;[4;22H[K[5;1H[93m  5 [m  [1m[96m}[m[5;8H[K[6;1H[93m  6 [m  [93mreturn[m line;[6;19H[K[7;1H[93m  7 [m[1m[96m}[m[7;6H[K[8;1H[93m  8 [m[8;5H[K[9;1H[93m  9 [m[93mconst[m lineGenera[9;21H[K[9;21H[?25h[?25ltor = [1m[96mfunction[m(leftChar,middleChar,rightChar,width)[1m[96m{[m
-[93m 10 [m  [1m[96mlet[m m[10;12H[K[10;12H[?25h[?25liddleChars = repeatChar(middleChar,width-2);
-[93m 11 [m  [93mif[m(width<2)[11;18H[K[12;1H[93m 12 [m  [12;7H[K[12;7H[?25h[?25l  rightChar =[95m""[m;
-[93m 13 [m  [93mreturn[m leftChar.concat(middleChars.concat(r[13;50H[K[13;50H[?25h[?25l[32;1H[K[13;50HightChar));
-[93m 14 [m[1m[96m}[m[14;6H[K[15;1H[93m 15 [m[15;5H[K[16;1H[93m 16 [m[16;5H[K[16;5H[?25h[15;5H[?25l[9;72H[1m[96m[46m{[14;5H}[?25h[?25l[m[9;72H[1m[96m{[14;5H}[13;5H[?25h[12;5H[11;5H[10;5H[9;5H[8;5H[?25l[m[1;44H[1m[96m[46m{[7;5H}[?25h[?25l[m[1;44H[1m[96m{[7;5H}[6;5H[?25h[5;5H[4;5H[3;5H[2;5H[1;5H[2;5H[3;5H[4;5H[5;5H[6;5H[?25l[m[1;44H[1m[96m[46m{[7;5H}[?25h[?25l[m[1;44H[1m[96m{[7;5H}[8;5H[?25h[9;5H[10;5H[11;5H[12;5H[13;5H[?25l[m[9;72H[1m[96m[46m{[14;5H}[?25h[?25l[m[9;72H[1m[96m{[14;5H}[15;5H[?25h[16;5H[15;5H[?25l[m[9;72H[1m[96m[46m{[14;5H}[?25h[?25l[m[9;72H[1m[96m{[14;5H}[13;5H[?25h[12;5H[11;5H[10;5H[9;5H[8;5H[?25l[m[1;44H[1m[96m[46m{[7;5H}[?25h[?25l[m[1;44H[1m[96m{[7;5H}[6;5H[?25h[5;5H[4;5H[3;5H[2;5H[1;5H[2;5H[3;5H[4;5H[5;5H[6;5H[?25l[m[1;44H[1m[96m[46m{[7;5H}[?25h[?25l[m[1;44H[1m[96m{[7;5H}[8;5H[?25h[9;5H[10;5H[11;5H[12;5H[13;5H[?25l[m[9;72H[1m[96m[46m{[14;5H}[?25h[?25l[m[9;72H[1m[96m{[14;5H}[15;5H[?25h[16;5H[15;5H[?25l[m[9;72H[1m[96m[46m{[14;5H}[?25h[?25l[m[9;72H[1m[96m{[14;5H}[13;5H[?25h[12;5H[11;5H[10;5H[9;5H[8;5H[?25l[m[1;44H[1m[96m[46m{[7;5H}[?25h[?25l[m[1;44H[1m[96m{[7;5H}[6;5H[?25h[5;5H[4;5H[3;5H[2;5H[1;5H[?25l[32;1H[m:[?2004h[?25hw[?25l[?25hq[?25l[?25h![?25l[?25h[?25l[?2004l"patternUtilLib.js" [New] 16L, 359C written[23;2t[23;1t[22;2t[22;1t[23;2t[23;1t
-[?2004l[?1l>[?25h[?1049l[1m[7m%[27m[1m[0m                                                                                                                       ]2;sumanraj@in-sumanraj: ~/project/javascript_program_file/patterns/src]1;../patterns/src[0m[27m[24m[J[01;32m➜  [36msrc[00m [01;34mgit:([31mmaster[34m) [33m✗[00m [K[?1h=[?2004h
