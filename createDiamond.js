@@ -1,10 +1,10 @@
 const lib = require('./src/patternLib');
-const {genDiamond} = lib;
+const {generateDiamond} = lib;
 
 const main = function(){
 let type = process.argv[2];
 let height = +process.argv[3];
-  console.log(genDiamond(type,height));
+  console.log(generateDiamond(type,height));
 }
 
 main();

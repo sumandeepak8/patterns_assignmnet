@@ -19,16 +19,14 @@ const makeHollowRectangle = function(width,height){
 }
 
 const makeAlternatingRectangle = function(width,height){
-  let rectangle = [];
+  let rectangle = new Array(height).fill(1);
   let lineGeneratorRef = [lineGenerator("*","*","*",width),lineGenerator("-","-","-",width)]
-  for(let index = 0; index < height; index++){
-    rectangle.push(lineGeneratorRef[index%2]);
-  }
-  return rectangle.join("\n");
+  return rectangle.map(function(element,index){
+    return lineGeneratorRef[index%2];
+  }).join("\n");
 }
 
-
-const genRectangle = function(type,width,height){
+const generateRectangle = function(type,width,height){
   let rectangle = {};
   rectangle.filled = makeFilledRectangle(width,height);
   rectangle.hollow = makeHollowRectangle(width,height);
@@ -37,36 +35,33 @@ const genRectangle = function(type,width,height){
 }
 
 
-// to make left sided triangle.
-const left = function(height){
-  let delimiter = "\n";
+// to make leftTriangle sided triangle.
+const leftTriangle = function(height,spaces){
   let triangle =[];
-  let spaces = height;
-  for(let index=1; index<=height ; index++){
-    triangle.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
-  }
-  return triangle.join(delimiter);
-
-}
-
-const right = function(height){
-  let delimiter = "\n";
-  let triangle =[];
-  let spaces = height;
   for(let index=1; index<=height ; index++){
     triangle.push(repeatChar("*",index).concat(repeatChar(" ",spaces-index)));
   }
-  return triangle.join(delimiter);
+  return triangle.join("\n");
 }
 
-const genTriangle = function(alignType,height){
+// to make right-aligned triangle.
+const rightTriangle= function(height,spaces){
+  let triangle =[];
+  for(let index=1; index<=height ; index++){
+    triangle.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
+  }
+  return triangle.join("\n");
+}
+
+const generateTriangle = function(alignType,height){
+  let spaces = height;
   let triangle = {};
-  triangle.left = left(height);
-  triangle.right = right(height);
+  triangle.left = leftTriangle(height,spaces);
+  triangle.right = rightTriangle(height,spaces);
   return triangle[alignType];
 }
 
-const genHollowDiamond = function(height){
+const generateHollowDiamond = function(height){
   let limit = Math.ceil(height/2);
   let lines = "";
   let lowerLines = "";
@@ -101,8 +96,14 @@ const genLineOfHollowDiamond = function(height,rowIndex,lowerLines){
   return line;
 }
 
+const justifier = function(height,row,chars) {
+  let spaceLength = (height-row)/2
+  let space = " ";
+  return Array(spaceLength).fill(space).concat(chars.concat(Array(spaceLength).fill(space).join(""))).join("");
 
-const genFilledDiamond = function(height){
+}
+
+const generateFilledDiamond = function(height){
   let limit = Math.ceil(height/2);
   let lines = "";
   let lowerLines = "";
@@ -137,7 +138,7 @@ const genLineOfFilledDiamond = function(height,rowIndex,lowerLines){
   return line;
 }
 
-const genAngledHollowDiamond = function(height){
+const generateAngledHollowDiamond = function(height){
   let limit = Math.ceil(height/2);
   let lines = "";
   let lowerLines = "";
@@ -200,21 +201,20 @@ const lowerAngled = function(height,limit){
   return line;
 }
 
-const genDiamond = function(type,height){
-  if(type == "hollow"){
-    return (genHollowDiamond(height));
-  }
-  if(type == "filled"){
-    return genFilledDiamond(height);
-  }
-  if(type == "angled"){
-    return (genAngledHollowDiamond(height));
-  }
+const generateDiamond = function(type,height){
+  let diamond = {};
+  diamond.hollow = generateHollowDiamond(height);
+  diamond.filled = generateFilledDiamond(height);
+  diamond.angled = generateAngledHollowDiamond(height);
+  return diamond[type];
 }
 
 
-exports.genRectangle = genRectangle;
+exports.generateRectangle = generateRectangle;
 exports.makeFilledRectangle = makeFilledRectangle;
 exports.makeHollowRectangle = makeHollowRectangle;
-exports.genTriangle = genTriangle;
-exports.genDiamond = genDiamond;
+exports.generateTriangle = generateTriangle;
+exports.generateDiamond = generateDiamond;
+exports.leftTriangle = leftTriangle;
+exports.rightTriangle= rightTriangle;
+exports.justifier = justifier;

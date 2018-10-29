@@ -1,10 +1,16 @@
 const assert = require('assert');
 const lib = require('../src/patternLib.js');
 
-const {genRectangle} =lib;
-const {makeFilledRectangle} = lib;
-const {makeHollowRectangle} = lib;
-const {genTriangle} = lib;
+const {
+  generateRectangle,
+  makeFilledRectangle,
+  makeHollowRectangle,
+  generateTriangle,
+  leftTriangle,
+  rightTriangle,
+  justifier,
+} = lib;
+
 
 // test for filled rectangle.
 let row = "*";
@@ -22,34 +28,54 @@ expectedOutput = [row,row].join("\n");
 assert.deepEqual(makeFilledRectangle(1,2),expectedOutput);
 
 // test for hollow rectangle.
-assert.deepEqual(genRectangle("hollow",1,1),"*");
+assert.deepEqual(generateRectangle("hollow",1,1),"*");
 
 expectedOutput = ["**","**"].join("\n");
-assert.deepEqual(genRectangle("hollow",2,2),expectedOutput);
+assert.deepEqual(generateRectangle("hollow",2,2),expectedOutput);
 
 expectedOutput = ["***","* *","***"].join("\n");
-assert.deepEqual(genRectangle("hollow",3,3),expectedOutput);
+assert.deepEqual(generateRectangle("hollow",3,3),expectedOutput);
 
 // test for alternating rectangle.
 expectedOutput = ["*","-"].join("\n");
-assert.deepEqual(genRectangle("alternating",1,2),expectedOutput);
+assert.deepEqual(generateRectangle("alternating",1,2),expectedOutput);
 
 expectedOutput = ["***","---","***","---"].join("\n");
-assert.deepEqual(genRectangle("alternating",3,4),expectedOutput);
+assert.deepEqual(generateRectangle("alternating",3,4),expectedOutput);
 
 expectedOutput = ["*"].join("\n");
-assert.deepEqual(genRectangle("alternating",1,1),expectedOutput);
+assert.deepEqual(generateRectangle("alternating",1,1),expectedOutput);
 
-// test for left triangle.
+// test for generateTriangle function for left triangle.
 expectedOutput = ["*"].join("\n");
-assert.deepEqual(genTriangle("left",1),expectedOutput);
-
-expectedOutput = ["  *"," **","***"].join("\n");
-assert.deepEqual(genTriangle("left",3),expectedOutput);
-
-// test for right triangle.
-expectedOutput = ["*"].join("\n");
-assert.deepEqual(genTriangle("right",1),expectedOutput);
+assert.deepEqual(generateTriangle("left",1),expectedOutput);
 
 expectedOutput = ["*  ","** ","***"].join("\n");
-assert.deepEqual(genTriangle("right",3),expectedOutput);
+assert.deepEqual(generateTriangle("left",3),expectedOutput);
+
+// test of generateTriangle function for right triangle.
+expectedOutput = ["*"].join("\n");
+assert.deepEqual(generateTriangle("right",1),expectedOutput);
+
+expectedOutput = ["  *"," **","***"].join("\n");
+assert.deepEqual(generateTriangle("right",3),expectedOutput);
+
+// test for leftTriangle function.
+expectedOutput = ["*  ","** ","***"].join("\n");
+assert.deepEqual(leftTriangle(3,3),expectedOutput);
+
+expectedOutput = ["*    ","**   ","***  ","**** ","*****"].join("\n");
+assert.deepEqual(leftTriangle(5,5),expectedOutput);
+
+// test for rightTrianle function.
+expectedOutput = ["*"].join("\n");
+assert.deepEqual(rightTriangle(1,1),expectedOutput);
+
+expectedOutput = ["  *"," **","***"].join("\n");
+assert.deepEqual(rightTriangle(3,3),expectedOutput);
+
+// test for justifier function.
+expectedOutput = " * ";
+assert.deepEqual(justifier(3,1,"*"),expectedOutput);
+expectedOutput = "  *  ";
+assert.deepEqual(justifier(5,1,"*"),expectedOutput);
