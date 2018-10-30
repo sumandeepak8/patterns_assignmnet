@@ -23,6 +23,9 @@ assert.deepEqual(lineGenerator("*","*","*",3),"***")
 expectedOutput = [1,3,1];
 assert.deepEqual(starsInRows(3),expectedOutput);
 
+expectedOutput = [1];
+assert.deepEqual(starsInRows(1),expectedOutput);
+
 expectedOutput = [1,3,5,3,1];
 assert.deepEqual(starsInRows(5),expectedOutput);
 

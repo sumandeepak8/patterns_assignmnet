@@ -101,23 +101,18 @@ const genLineOfHollowDiamond = function(height,rowIndex,lowerLines){
 }
 
 const generateFilledDiamond = function(height){
-  let limit = Math.ceil(height/2);
-  let lines = "";
-  let lowerLines = "";
-  let delimiter = "\n";
-  let lowerLine = "";
-
-  for(let rowIndex = 1; rowIndex <= limit; rowIndex++){
-    lowerLines = lowerLine;
-    lines += genLineOfFilledDiamond(height,rowIndex) + delimiter;
-    lowerLine = genLineOfFilledDiamond(height,rowIndex) + delimiter + lowerLine;
-    if(rowIndex == 1){
-      lowerLine = genLineOfFilledDiamond(height,rowIndex);
-    }
+  let numbersOfStars = starsInRows(height);
+  let space = " ";
+  let star = "*";
+  let diamond = [];
+  for(let row = 1; row <= height; row++){
+    let spaces = spacesInRow(height,starsInRows,row).join("");
+    let numberOfStarsInRow = numbersOfStars.shift();
+    diamond.push(spaces.concat(repeatChar(star,numberOfStarsInRow).concat(spaces)))
   }
-
-  return (lines + lowerLines);
+  return diamond.join("\n");
 }
+
 
 const genLineOfFilledDiamond = function(height,rowIndex,lowerLines){         
   let startPosition = Math.ceil(height/2)-(rowIndex-1);
