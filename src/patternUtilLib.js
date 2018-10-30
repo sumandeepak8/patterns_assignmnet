@@ -13,7 +13,6 @@ const lineGenerator = function(leftChar,middleChar,rightChar,width){
   return leftChar.concat(middleChars.concat(rightChar));
 }
 
-
 const starsInRows = function(height) {
   let numbers = [];
   for(let index = -height+1; index < height; index +=2){
@@ -23,10 +22,9 @@ const starsInRows = function(height) {
 }
 
 const spacesInRow = function(height,starsInRows,row) {
-  let spaceLength = Math.ceil(Math.abs(height - starsInRows(height)[row-1])/2);
+  let spaceLength = Math.ceil(Math.abs(height-starsInRows(height)[row-1])/2);
   return new Array(spaceLength).fill(" ");
 }
-
 
 
 exports.lineGenerator = lineGenerator;

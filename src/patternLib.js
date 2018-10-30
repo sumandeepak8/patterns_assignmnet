@@ -1,4 +1,5 @@
 const utilLib = require('./patternUtilLib');
+
 const {
   lineGenerator,
   repeatChar,
@@ -38,8 +39,6 @@ const generateRectangle = function(type,width,height){
   return rectangle[type];
 }
 
-
-// to make leftTriangle sided triangle.
 const leftTriangle = function(height,spaces){
   let triangle =[];
   for(let index=1; index<=height ; index++){
@@ -48,7 +47,6 @@ const leftTriangle = function(height,spaces){
   return triangle.join("\n");
 }
 
-// to make right-aligned triangle.
 const rightTriangle= function(height,spaces){
   let triangle =[];
   for(let index=1; index<=height ; index++){
@@ -66,22 +64,33 @@ const generateTriangle = function(alignType,height){
 }
 
 const generateHollowDiamond = function(height){
-  let limit = Math.ceil(height/2);
-  let lines = "";
-  let lowerLines = "";
-  let delimiter = "\n";
-  let lowerLine = "";
-
-  for(let rowIndex = 1; rowIndex <= limit; rowIndex++){
-    lowerLines = lowerLine;
-    lines += genLineOfHollowDiamond(height,rowIndex) + delimiter;
-    lowerLine = genLineOfHollowDiamond(height,rowIndex) + delimiter + lowerLine;
-    if(rowIndex == 1){
-      lowerLine = genLineOfHollowDiamond(height,rowIndex);
-    }
+ let numbersOfStars = starsInRows(height);
+  let space = " ";
+  let star = "*";
+  let diamond = [];
+  for(let row = 1; row <= height; row++){
+    let spaces = spacesInRow(height,starsInRows,row).join("");
+    let numberOfStarsInRow = numbersOfStars.shift();
+   diamond.push(spaces.concat(lineGenerator("*"," ","*",numberOfStarsInRow).concat(spaces)))
   }
+  return diamond.join("\n");
 
-  return (lines + lowerLines);
+//  let limit = Math.ceil(height/2);
+//  let lines = "";
+//  let lowerLines = "";
+//  let delimiter = "\n";
+//  let lowerLine = "";
+//
+//  for(let rowIndex = 1; rowIndex <= limit; rowIndex++){
+//    lowerLines = lowerLine;
+//    lines += genLineOfHollowDiamond(height,rowIndex) + delimiter;
+//    lowerLine = genLineOfHollowDiamond(height,rowIndex) + delimiter + lowerLine;
+//    if(rowIndex == 1){
+//      lowerLine = genLineOfHollowDiamond(height,rowIndex);
+//    }
+//  }
+//
+//  return (lines + lowerLines);
 }
 
 const genLineOfHollowDiamond = function(height,rowIndex,lowerLines){         
@@ -113,22 +122,6 @@ const generateFilledDiamond = function(height){
   return diamond.join("\n");
 }
 
-
-const genLineOfFilledDiamond = function(height,rowIndex,lowerLines){         
-  let startPosition = Math.ceil(height/2)-(rowIndex-1);
-  let endPosition = Math.ceil(height/2)+(rowIndex-1);
-  let line = "";
-
-  for(let columnIndex = 1; columnIndex <= height; columnIndex++){
-    let stars = " ";
-    if(columnIndex >=startPosition && columnIndex <= endPosition){
-      stars = "*";
-    }
-    line +=stars;
-  }
-
-  return line;
-}
 
 const generateAngledHollowDiamond = function(height){
   let limit = Math.ceil(height/2);
