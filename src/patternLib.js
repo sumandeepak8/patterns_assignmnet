@@ -1,6 +1,10 @@
 const utilLib = require('./patternUtilLib');
-const {lineGenerator} = utilLib;
-const {repeatChar} = utilLib;
+const {
+  lineGenerator,
+  repeatChar,
+  spacesInRow,
+  starsInRows,
+} = utilLib;
 
 const makeFilledRectangle = function(width,height){
   return Array(height).fill(lineGenerator("*","*","*",width)).join("\n");
@@ -54,8 +58,8 @@ const rightTriangle= function(height,spaces){
 }
 
 const generateTriangle = function(alignType,height){
-  let spaces = height;
   let triangle = {};
+  let spaces = height
   triangle.left = leftTriangle(height,spaces);
   triangle.right = rightTriangle(height,spaces);
   return triangle[alignType];
@@ -94,13 +98,6 @@ const genLineOfHollowDiamond = function(height,rowIndex,lowerLines){
   }
 
   return line;
-}
-
-const justifier = function(height,row,chars) {
-  let spaceLength = (height-row)/2
-  let space = " ";
-  return Array(spaceLength).fill(space).concat(chars.concat(Array(spaceLength).fill(space).join(""))).join("");
-
 }
 
 const generateFilledDiamond = function(height){
@@ -217,4 +214,3 @@ exports.generateTriangle = generateTriangle;
 exports.generateDiamond = generateDiamond;
 exports.leftTriangle = leftTriangle;
 exports.rightTriangle= rightTriangle;
-exports.justifier = justifier;

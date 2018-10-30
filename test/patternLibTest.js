@@ -8,7 +8,6 @@ const {
   generateTriangle,
   leftTriangle,
   rightTriangle,
-  justifier,
 } = lib;
 
 
@@ -74,8 +73,5 @@ assert.deepEqual(rightTriangle(1,1),expectedOutput);
 expectedOutput = ["  *"," **","***"].join("\n");
 assert.deepEqual(rightTriangle(3,3),expectedOutput);
 
-// test for justifier function.
-expectedOutput = " * ";
-assert.deepEqual(justifier(3,1,"*"),expectedOutput);
-expectedOutput = "  *  ";
-assert.deepEqual(justifier(5,1,"*"),expectedOutput);
+
+
