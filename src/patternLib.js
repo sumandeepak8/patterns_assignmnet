@@ -1,5 +1,6 @@
 const utilLib = require('./patternUtilLib');
 
+
 const {
   lineGenerator,
   repeatChar,
@@ -8,51 +9,57 @@ const {
 } = utilLib;
 
 const makeFilledRectangle = function(width,height){
-  return Array(height).fill(lineGenerator("*","*","*",width)).join("\n");
+  return new Array(height).fill(lineGenerator("*","*","*",width));
 }
 
 const makeHollowRectangle = function(width,height){
-  let rectangle = []; 
+  let lines = []; 
+  let topLineGenerator = lineGenerator("*","*","*",width);
+  let middleLineGenerator = lineGenerator("*"," ","*",width);
+  let bottomLineGenerator = lineGenerator("*","*","*",width);
   if(height < 1)
     return "";
   if(height >1){
-    rectangle = new Array(height-2).fill(lineGenerator("*"," ","*",width));
-    rectangle.push(lineGenerator("*","*","*",width));
+    lines = new Array(height-2).fill(middleLineGenerator);
+    lines.push(bottomLineGenerator);
   }
-  rectangle.unshift(lineGenerator("*","*","*",width));
-  return rectangle.join("\n");
+  lines.unshift(topLineGenerator);
+  return lines;
 }
 
 const makeAlternatingRectangle = function(width,height){
-  let rectangle = new Array(height).fill(1);
-  let lineGeneratorRef = [lineGenerator("*","*","*",width),lineGenerator("-","-","-",width)]
-  return rectangle.map(function(element,index){
-    return lineGeneratorRef[index%2];
-  }).join("\n");
+  let lines = new Array(height).fill(0);
+  let firstLine = lineGenerator("*","*","*",width);
+  let secondLine = lineGenerator("-","-","-",width);
+  const callBack = function(element,index){
+  return [firstLine,secondLine][index%2];
+  }
+  return lines.map(callBack);
 }
+
 
 const generateRectangle = function(type,width,height){
   let rectangle = {};
   rectangle.filled = makeFilledRectangle(width,height);
   rectangle.hollow = makeHollowRectangle(width,height);
   rectangle.alternating = makeAlternatingRectangle(width,height);
-  return rectangle[type];
+  return rectangle[type].join("\n");
 }
 
 const leftTriangle = function(height,spaces){
-  let triangle =[];
+  let lines =[];
   for(let index=1; index<=height ; index++){
-    triangle.push(repeatChar("*",index).concat(repeatChar(" ",spaces-index)));
+    lines.push(repeatChar("*",index).concat(repeatChar(" ",spaces-index)));
   }
-  return triangle.join("\n");
+  return lines;
 }
 
 const rightTriangle= function(height,spaces){
-  let triangle =[];
+  let lines =[];
   for(let index=1; index<=height ; index++){
-    triangle.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
+    lines.push(repeatChar(" ",spaces-index).concat(repeatChar("*",index)));
   }
-  return triangle.join("\n");
+  return lines;
 }
 
 const generateTriangle = function(alignType,height){
@@ -60,130 +67,50 @@ const generateTriangle = function(alignType,height){
   let spaces = height
   triangle.left = leftTriangle(height,spaces);
   triangle.right = rightTriangle(height,spaces);
-  return triangle[alignType];
+  return triangle[alignType].join("\n");
 }
 
 const generateHollowDiamond = function(height){
- let numbersOfStars = starsInRows(height);
+  let numbersOfStars = starsInRows(height);
   let space = " ";
   let star = "*";
-  let diamond = [];
+  let lines =[];
   for(let row = 1; row <= height; row++){
     let spaces = spacesInRow(height,starsInRows,row).join("");
     let numberOfStarsInRow = numbersOfStars.shift();
-   diamond.push(spaces.concat(lineGenerator("*"," ","*",numberOfStarsInRow).concat(spaces)))
+    lines.push(spaces.concat(lineGenerator("*"," ","*",numberOfStarsInRow).concat(spaces)))
   }
-  return diamond.join("\n");
-
-//  let limit = Math.ceil(height/2);
-//  let lines = "";
-//  let lowerLines = "";
-//  let delimiter = "\n";
-//  let lowerLine = "";
-//
-//  for(let rowIndex = 1; rowIndex <= limit; rowIndex++){
-//    lowerLines = lowerLine;
-//    lines += genLineOfHollowDiamond(height,rowIndex) + delimiter;
-//    lowerLine = genLineOfHollowDiamond(height,rowIndex) + delimiter + lowerLine;
-//    if(rowIndex == 1){
-//      lowerLine = genLineOfHollowDiamond(height,rowIndex);
-//    }
-//  }
-//
-//  return (lines + lowerLines);
-}
-
-const genLineOfHollowDiamond = function(height,rowIndex,lowerLines){         
-  let startPosition = Math.ceil(height/2)-(rowIndex-1);
-  let endPosition = Math.ceil(height/2)+(rowIndex-1);
-  let line = "";
-
-  for(let columnIndex = 1; columnIndex <= height; columnIndex++){
-    let stars = " ";
-    if(columnIndex ==startPosition || columnIndex == endPosition){
-      stars = "*";
-    }
-    line +=stars;
-  }
-
-  return line;
+  return lines;
 }
 
 const generateFilledDiamond = function(height){
   let numbersOfStars = starsInRows(height);
   let space = " ";
   let star = "*";
-  let diamond = [];
+  let lines = [];
   for(let row = 1; row <= height; row++){
     let spaces = spacesInRow(height,starsInRows,row).join("");
     let numberOfStarsInRow = numbersOfStars.shift();
-    diamond.push(spaces.concat(repeatChar(star,numberOfStarsInRow).concat(spaces)))
+    lines.push(spaces.concat(repeatChar(star,numberOfStarsInRow).concat(spaces)))
   }
-  return diamond.join("\n");
+  return lines;
 }
 
 
 const generateAngledHollowDiamond = function(height){
-  let limit = Math.ceil(height/2);
-  let lines = "";
-  let lowerLines = "";
-  let delimiter = "\n";
-  let lowerLine = "";
-  let rowIndex = 1; 
-  for(rowIndex = 1; rowIndex <= limit; rowIndex++){
-    if(rowIndex != limit) lines += genLineOfAngledHollowDiamond(height,rowIndex,limit) + delimiter;
-    else lines += genLineOfAngledHollowDiamond(height,rowIndex,limit);
+  let numbersOfStars = starsInRows(height);
+  let lines = [];
+  for(let row = 1; row <= height; row++){
+    let spaces = spacesInRow(height,starsInRows,row).join("");
+    let numberOfStarsInRow = numbersOfStars.shift();
+    let lineGeneratorRef = lineGenerator("/"," ","\\",numberOfStarsInRow)
+    if(row > height/2)
+      lineGeneratorRef = lineGenerator("\\"," ","/",numberOfStarsInRow)
+    if(row ==1 ||row == height ||row == Math.ceil( height/2))
+      lineGeneratorRef = lineGenerator("*"," ","*",numberOfStarsInRow)
+    lines.push(spaces.concat(lineGeneratorRef.concat(spaces)));
   }
-  lowerLine =  lowerAngled(height,limit); 
-  return (lines+"\n"+lowerLine);
-}
-
-const genLineOfAngledHollowDiamond = function(height,rowIndex,limit){         
-  let startPosition = Math.ceil(height/2)-(rowIndex-1);
-  let endPosition = Math.ceil(height/2)+(rowIndex-1);
-  let line = "";
-
-  for(let columnIndex = 1; columnIndex <= height; columnIndex++){
-    let stars = " ";
-    if((rowIndex == 1 && columnIndex == startPosition) || (rowIndex == limit && (columnIndex == startPosition ||columnIndex  == height))){
-      stars ="*";
-    }
-    if(columnIndex == startPosition && rowIndex != limit && rowIndex != 1){
-      stars ="/"
-    }
-    if(columnIndex == endPosition && rowIndex != limit && rowIndex != 1){
-      stars ="\\"
-    }
-    line +=stars;
-  }
-  return line;
-}
-
-const lowerAngled = function(height,limit){
-  let startPosition = 2;
-  let endPosition = height-1;
-  let line = "";
-  for(let rowIndex = limit+1; rowIndex <= height; rowIndex++){
-    for(let columnIndex = 1; columnIndex <= height; columnIndex++){
-      stars =" ";
-      if(columnIndex == startPosition ){
-        stars ="\\";
-      }
-      if(columnIndex == endPosition){
-        stars ="/";
-      }
-      if( rowIndex == height && columnIndex == startPosition){
-        stars ="*";
-      }
-      line += stars ;
-    }
-    if(rowIndex != height){
-      line  +=  "\n";
-    }
-    startPosition++;
-    endPosition--;
-  }
-  return line;
+  return lines;
 }
 
 const generateDiamond = function(type,height){
@@ -191,7 +118,7 @@ const generateDiamond = function(type,height){
   diamond.hollow = generateHollowDiamond(height);
   diamond.filled = generateFilledDiamond(height);
   diamond.angled = generateAngledHollowDiamond(height);
-  return diamond[type];
+  return diamond[type].join("\n");
 }
 
 
@@ -202,3 +129,5 @@ exports.generateTriangle = generateTriangle;
 exports.generateDiamond = generateDiamond;
 exports.leftTriangle = leftTriangle;
 exports.rightTriangle= rightTriangle;
+exports.generateFilledDiamond = generateFilledDiamond;
+exports.generateHollowDiamond = generateHollowDiamond;
